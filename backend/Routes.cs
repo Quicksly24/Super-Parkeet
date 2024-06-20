@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 public class TestController:Controller{
 
+  private readonly Dbcontent _content;
+  public TestController(Dbcontent _content){
+     this._content = _content;
+  }
+
 [Route("/")]
 [HttpGet]
 public string test() =>"hello";
@@ -14,9 +19,8 @@ public IActionResult login(){
   return Ok();
 }
 
-
-private void addresources(){
-
-}
+[Route("/Reasource")]
+[HttpGet]
+public IActionResult list() => Ok(_content.resource.ToList());
 
 }
